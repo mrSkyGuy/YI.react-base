@@ -1,0 +1,29 @@
+.sections {
+  background: #fff;
+  height: 500px;
+  border-radius: 8px;
+  padding: 20px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    list-style-type: none;
+  }
+
+  &__btn {
+    white-space: pre;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    &.active {
+      font-weight: 700;
+    }
+  }
+}

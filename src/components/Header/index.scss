@@ -1,0 +1,27 @@
+.header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: #000;
+  padding: 20px 40px;
+
+  & .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__title {
+    font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+    color: #fff;
+  }
+
+  &__basket-btn {
+    cursor: pointer;
+    border: none;
+    background: transparent;
+  }
+}

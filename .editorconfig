@@ -1,0 +1,10 @@
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+trim_trailing_whitespace = true
+spaces_around_operators = true
+
+[*.{jsx,scss,css}]
+indent_size = 2
