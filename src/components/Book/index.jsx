@@ -3,20 +3,20 @@ import React, { useState } from 'react'
 import './index.scss'
 
 
-export default function SectionItem({ title, author, genres, rating, price, quantity }) {
+export default function Book({ title, author, genres, rating, price, quantity }) {
   const [counter, setCounter] = useState(0)
 
-  return <section className="section-feed__item">
-    <div className="item__description">
-      <h3 className="item__title">{ title }</h3>
-      <div className="item__info">
-        <span className="item__author">{ author }</span>
-        <span className="item__genres">{ genres.join(", ") }</span>
-        <span className="item__rating">{ rating } / 5</span>
+  return <section className="book">
+    <div className="book__description">
+      <h3 className="book__title">{ title }</h3>
+      <div className="book__info">
+        <span className="book__author">{ author }</span>
+        <span className="book__genres">{ genres.join(", ") }</span>
+        <span className="book__rating">{ rating } / 5</span>
       </div>
-      <span className="item__price">{price} ₽</span>
+      <span className="book__price">{price} ₽</span>
     </div>
-    <div className="item__quantity-tools">
+    <div className="book__quantity-tools">
       <button
         className="quantity-tools__minus quantity-tools__btn"
         disabled={counter <= 0}
