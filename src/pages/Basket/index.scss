@@ -1,0 +1,75 @@
+.basket {
+  &.container {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__error {
+    margin: 0 auto;
+    font-size: 30px;
+  }
+
+  &__cheque {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    background: #fff;
+    height: 500px;
+    min-width: 270px;
+    border-radius: 8px;
+
+    .cheque__title {
+      font-family: 'Open Sans';
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .cheque__products {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      list-style-type: none;
+
+      .products__item {
+        white-space: pre;
+        display: flex;
+        justify-content: space-between;
+        gap: 36px;
+        font-family: 'Open Sans';
+        font-size: 16px;
+      }
+
+      .products__item-price {
+        font-weight: 700;
+      }
+    }
+
+    .cheque__total {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .total__sum {
+        font-family: 'Open Sans';
+        font-weight: 700;
+        font-size: 20px;
+      }
+
+      .total__buy-btn {
+        padding: 6px 12px 8px;
+        background: #000000;
+        border-radius: 8px;
+        color: #fff;
+      }
+    }
+  }
+
+  &__products {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}

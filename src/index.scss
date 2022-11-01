@@ -2,7 +2,24 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border: 1px solid #eee
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #333;
+    border-radius: 10px;
+    &:active {
+      background-color: #000;
+    }
+  }
 }
+
 
 body {
   background: #F5F5F5;

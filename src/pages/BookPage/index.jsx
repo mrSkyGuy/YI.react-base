@@ -18,17 +18,12 @@ export default function BookPage() {
         break
       }
     }
-  }, [id, mock])
+  }, [id])
 
   return <section className="book-page container">
     {currBook && <Book
       key={currBook.id}
-      title={currBook.title}
-      author={currBook.author}
-      genres={currBook.genres}
-      rating={currBook.rating}
-      price={currBook.price}
-      quantity={currBook.quantity}
+      bookData={currBook}
     />}
 
     <section className="book-page__description">
@@ -39,8 +34,8 @@ export default function BookPage() {
     </section>
 
     <ul className="book-page__feedbacks">
-      {currBook && currBook.feedbacks.map(feedback =>
-        <li className="feedbacks__item">
+      {currBook && currBook.feedbacks.map((feedback, index) =>
+        <li className="feedbacks__item" key={index}>
           <div className="item__info">
             <h4 className="item__username">{feedback.username}</h4>
             <span>{feedback.rating} / 5</span>

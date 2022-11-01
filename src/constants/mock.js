@@ -1,4 +1,4 @@
-export default [
+const mock =[
     {
         id: 1,
         title: "Религия",
@@ -172,3 +172,5 @@ export default [
         ]
     },
 ]
+
+export default mock

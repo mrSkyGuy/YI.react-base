@@ -6,23 +6,26 @@ import {
 } from "react-router-dom"
 
 import { CurrentSectionState } from "./context/currentSectionContext";
+import { BasketState } from "./context/basketContext";
 import Header from "./components/Header";
 import Catalog from './pages/Catalog'
 import BookPage from "./pages/BookPage";
-import Footer from "./components/Footer";
+import Basket from "./pages/Basket";
 
 
 function App() {
-  return <CurrentSectionState>
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path="/" element={ <Catalog /> }/>
-        <Route path="/:id" element={ <BookPage /> }/>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
-  </CurrentSectionState>
+  return <BasketState>
+    <CurrentSectionState>
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={ <Catalog /> }/>
+          <Route path="/basket" element={ <Basket /> } />
+          <Route path="/:id" element={ <BookPage /> }/>
+        </Routes>
+      </BrowserRouter>
+    </CurrentSectionState>
+  </BasketState>
 }
 
 export default App;

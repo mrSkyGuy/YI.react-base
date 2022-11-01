@@ -1,6 +1,5 @@
 .footer {
-  position: sticky;
-  margin-top: 48px;
+  position: fixed;
   padding-bottom: 4px;
   width: 100%;
   color: rgba(0, 0, 0, .5);
@@ -10,5 +9,4 @@
 
   display: flex;
   justify-content: center;
-
 }
