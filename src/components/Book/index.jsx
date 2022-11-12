@@ -1,72 +1,51 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { basketSlice } from '../../store/basket'
+import { selectBasket } from '../../store/basket/selectors'
+import { selectBookById } from '../../store/book/selectors'
 
-import { BasketContext } from '../../context/basketContext'
 import './index.scss'
 
 
-export default function Book({
-  bookData,
-  link
-}) {
-  const [counter, setCounter] = useState(0)
-  const { basket, setBasket } = useContext(BasketContext)
-
-  useEffect(() => {
-    let currBook = basket.filter(book => book.id === bookData.id)[0]
-    if (currBook) setCounter(currBook.userQuantity !== undefined ? currBook.userQuantity : 0)
-  }, [basket, bookData.id])
-
+export default function Book({ bookId, link }) {
+  const dispatch = useDispatch()
+  const book = useSelector(state => selectBookById(state, bookId))
+  const basket = useSelector(state => selectBasket(state))
+  console.log(book)
   function toBasket(event, type) {
-    setCounter(prev => type === "+" ? ++prev : --prev)
-    setBasket(content => {
-      let currBook = content.filter(book => book.id === bookData.id)[0]
-      if (currBook) {
-        content = content.map(book => {
-          if (book.id === bookData.id) {
-            book.userQuantity = type === "+" ? counter + 1 : counter - 1
-          }
-          return book
-        })
-
-        return content.filter(book => book.userQuantity > 0)
-      } else {
-        currBook = {
-          ...bookData,
-          userQuantity: type === "+" ? counter + 1 : counter - 1
-        }
-        return [
-          ...content,
-          currBook
-        ]
-      }
-
-    })
+    dispatch(
+      type === "+" ?
+        basketSlice.actions.addBook(bookId)
+        : basketSlice.actions.removeBook(bookId)
+    )
 
     event.stopPropagation()
     event.preventDefault()
   }
 
+  if (!book) return <div>Загрузка...</div>;
+
   const jsx = <section className="book">
     <div className="book__description">
-      <h3 className="book__title">{ bookData.title }</h3>
+      <h3 className="book__title">{ book.title }</h3>
       <div className="book__info">
-        <span className="book__author">{ bookData.author }</span>
-        <span className="book__genres">{ bookData.genres.join(", ") }</span>
-        <span className="book__rating">{ bookData.rating } / 5</span>
+        <span className="book__author">{ book.author }</span>
+        <span className="book__genres">{ book.genres.join(", ") }</span>
+        <span className="book__rating">{ book.rating } / 5</span>
       </div>
-      <span className="book__price">{bookData.price} ₽</span>
+      <span className="book__price">{book.price} ₽</span>
     </div>
     <div className="book__quantity-tools">
       <button
         className="quantity-tools__minus quantity-tools__btn"
-        disabled={counter <= 0}
+        disabled={basket?.bookId <= 0}
         onClick={e => toBasket(e, "-")}
       >-</button>
-      <span className="quantity-tools__counter">{counter}</span>
+      <span className="quantity-tools__counter">{basket[bookId] || 0}</span>
       <button
         className="quantity-tools__plus quantity-tools__btn"
-        disabled={counter >= bookData.quantity}
+        disabled={basket?.bookId >= book.quantity}
         onClick={e => toBasket(e, "+")}
       >+</button>
     </div>
